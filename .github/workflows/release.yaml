@@ -26,7 +26,7 @@ jobs:
       version: auto
       trusted_boot: false
       no_cache: false
-      iso: false
+      iso: true
       raw: false
       vhd: false
       gce: false
@@ -40,7 +40,7 @@ jobs:
       grype_sarif: false
       trivy_sarif: false
       registry_domain: ghcr.io
-      registry_namespace: ${{ github.repository_owner }}
+      registry_namespace: ${{ github.actor }}
       registry_repository: kairos-build
       custom_tag_format: ${{ github.event.release.tag_name }}
       summary_artifacts: false
