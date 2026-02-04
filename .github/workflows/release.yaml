@@ -41,7 +41,7 @@ jobs:
       trivy_sarif: false
       registry_domain: ghcr.io
       registry_namespace: ${{ github.repository_owner }}
-      registry_repository: kairos-custom
+      registry_repository: kairos-build
       custom_tag_format: ${{ github.event.release.tag_name }}
       summary_artifacts: false
       auroraboot_version: latest
