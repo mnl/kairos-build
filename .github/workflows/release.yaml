@@ -1,0 +1,49 @@
+name: Build Kairos Custom Image
+
+on:
+  release:
+    types: [created]
+
+jobs:
+  build:
+    permissions:
+      id-token: write
+      contents: write
+      actions: read
+      security-events: write
+      packages: write
+    uses: kairos-io/kairos-factory-action/.github/workflows/reusable-factory.yaml@main
+    secrets:
+      registry_username: ${{ github.repository_owner }}
+      registry_password: ${{ secrets.GITHUB_TOKEN }}
+    with:
+      dockerfile_path: Dockerfile
+      base_image: ubuntu:24.04
+      model: generic
+      arch: amd64
+      kubernetes_distro: k3s
+      kubernetes_version: auto
+      version: auto
+      trusted_boot: false
+      no_cache: false
+      iso: true
+      raw: false
+      vhd: false
+      gce: false
+      tar: false
+      compute_checksums: true
+      output_format: auto
+      security_checks: ""
+      cosign: false
+      grype: false
+      trivy: false
+      grype_sarif: false
+      trivy_sarif: false
+      registry_domain: ghcr.io
+      registry_namespace: ${{ github.repository_owner }}
+      registry_repository: kairos-custom
+      custom_tag_format: ${{ github.event.release.tag_name }}
+      summary_artifacts: false
+      auroraboot_version: latest
+      release: true
+      list_release_artifacts: false
